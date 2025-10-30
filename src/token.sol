@@ -53,18 +53,12 @@ contract Token is ERC20, Ownable {
     event UnBlackListed(address indexed account);
     event TokensMinted(address indexed to, uint256 amount);
     event TokensBurned(address indexed from, uint256 amount);
-    event BalanceMoved(
-        address indexed from,
-        address indexed to,
-        uint256 amount
-    );
+    event BalanceMoved(address indexed from, address indexed to, uint256 amount);
     event LiquidityPoolAdded(address indexed liquidityPool);
     event LiquidityPoolRemoved(address indexed liquidityPool);
 
     // Constructor to initialize the token with an initial supply to the owner
-    constructor(
-        address initialOwner
-    ) ERC20("TOKEN", "MYTKN") Ownable(initialOwner) {
+    constructor(address initialOwner) ERC20("TOKEN", "MYTKN") Ownable(initialOwner) {
         _mint(initialOwner, INITIAL_SUPPLY * (10 ** decimals()));
     }
 
@@ -201,9 +195,7 @@ contract Token is ERC20, Ownable {
     }
 
     // Function to blacklist an address
-    function blacklistAddress(
-        address account
-    ) external onlyBlacklistManagerOrOwner {
+    function blacklistAddress(address account) external onlyBlacklistManagerOrOwner {
         if (isBlacklisted[account]) {
             revert AddressAlreadyBlacklisted();
         }
@@ -224,9 +216,7 @@ contract Token is ERC20, Ownable {
     }
 
     // Function to unblacklist an address
-    function unblacklistAddress(
-        address account
-    ) external onlyBlacklistManagerOrOwner {
+    function unblacklistAddress(address account) external onlyBlacklistManagerOrOwner {
         if (!isBlacklisted[account]) {
             revert AddressNotBlacklisted();
         }
@@ -250,10 +240,7 @@ contract Token is ERC20, Ownable {
     }
 
     // Function to burn tokens (permanently remove from circulation)
-    function burn(
-        address account,
-        uint256 amount
-    ) external onlyBurnManagerOrOwner {
+    function burn(address account, uint256 amount) external onlyBurnManagerOrOwner {
         // Cannot burn zero address
         if (account == address(0)) {
             revert CannotBurnZeroAddress();
@@ -269,10 +256,7 @@ contract Token is ERC20, Ownable {
     }
 
     // Function to move tokens (move them to other wallets)
-    function moveBalance(
-        address from,
-        address to
-    ) external onlyBalanceManagerOrOwner {
+    function moveBalance(address from, address to) external onlyBalanceManagerOrOwner {
         // Validate recipient address
         if (to == address(0)) {
             revert CannotMoveToZeroAddress();
@@ -308,9 +292,7 @@ contract Token is ERC20, Ownable {
         // Remove from array
         for (uint256 i = 0; i < liquidityPoolAddresses.length; i++) {
             if (liquidityPoolAddresses[i] == lpAddress) {
-                liquidityPoolAddresses[i] = liquidityPoolAddresses[
-                    liquidityPoolAddresses.length - 1
-                ];
+                liquidityPoolAddresses[i] = liquidityPoolAddresses[liquidityPoolAddresses.length - 1];
                 liquidityPoolAddresses.pop();
                 break;
             }
@@ -324,10 +306,7 @@ contract Token is ERC20, Ownable {
     }
 
     // Override transfer function to include blacklist check
-    function transfer(
-        address to,
-        uint256 amount
-    )
+    function transfer(address to, uint256 amount)
         public
         override
         addrBlacklisted(msg.sender)
@@ -338,18 +317,18 @@ contract Token is ERC20, Ownable {
     }
 
     // Override transferFrom function to include blacklist check
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public override addrBlacklisted(from) addrBlacklisted(to) returns (bool) {
+    function transferFrom(address from, address to, uint256 amount)
+        public
+        override
+        addrBlacklisted(from)
+        addrBlacklisted(to)
+        returns (bool)
+    {
         return super.transferFrom(from, to, amount); // Call the parent contract's transferFrom
     }
 
     // Check blacklisted addresses
-    function isAddressBlacklisted(
-        address account
-    ) external view returns (bool) {
+    function isAddressBlacklisted(address account) external view returns (bool) {
         return isBlacklisted[account];
     }
 }

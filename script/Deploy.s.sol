@@ -28,14 +28,8 @@ contract DeployScript is Script {
         vm.stopBroadcast();
 
         // Verify deployment
-        require(
-            address(token) != address(0),
-            "Deployment failed: token address is zero"
-        );
-        require(
-            token.owner() == deployerAddress,
-            "Deployment failed: owner not set correctly"
-        );
+        require(address(token) != address(0), "Deployment failed: token address is zero");
+        require(token.owner() == deployerAddress, "Deployment failed: owner not set correctly");
 
         // Log deployment information
         console.log("");
@@ -49,16 +43,8 @@ contract DeployScript is Script {
         console.log("Token Name:", token.name());
         console.log("Token Symbol:", token.symbol());
         console.log("Token Decimals:", token.decimals());
-        console.log(
-            "Total Supply:",
-            token.totalSupply() / (10 ** token.decimals()),
-            "tokens"
-        );
-        console.log(
-            "Owner Balance:",
-            token.balanceOf(deployerAddress) / (10 ** token.decimals()),
-            "tokens"
-        );
+        console.log("Total Supply:", token.totalSupply() / (10 ** token.decimals()), "tokens");
+        console.log("Owner Balance:", token.balanceOf(deployerAddress) / (10 ** token.decimals()), "tokens");
         console.log("");
         console.log("========================================");
         console.log("");
