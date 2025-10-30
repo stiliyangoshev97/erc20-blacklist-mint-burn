@@ -1,0 +1,70 @@
+# Compiler files
+cache/
+out/
+
+# Broadcast logs (deployment transaction data)
+broadcast/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+
+# Private deployment notes
+DeploymentCommands.md
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Node modules (if you use any npm packages for testing/scripting)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Python (if using any Python scripts)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Slither/Analysis output
+slither-output/
+crytic-export/
+
+# Certora output (if using formal verification)
+certora_out/
+.certora*/
+
+# Private keys (IMPORTANT - keep this)
+*.key
+*.pem
+keystore/
