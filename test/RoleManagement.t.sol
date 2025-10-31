@@ -17,10 +17,7 @@ contract RoleManagementTest is TokenTest {
      */
     function test_AddMintManager_Success() public {
         // Arrange
-        assertFalse(
-            token.mintManager(mintManager),
-            "Mint manager should not be set initially"
-        );
+        assertFalse(token.mintManager(mintManager), "Mint manager should not be set initially");
 
         // Act
         vm.prank(owner);
@@ -29,10 +26,7 @@ contract RoleManagementTest is TokenTest {
         token.addMintManager(mintManager);
 
         // Assert
-        assertTrue(
-            token.mintManager(mintManager),
-            "Mint manager should be set"
-        );
+        assertTrue(token.mintManager(mintManager), "Mint manager should be set");
     }
 
     /**
@@ -51,12 +45,7 @@ contract RoleManagementTest is TokenTest {
     function test_AddMintManager_RevertWhen_NotOwner() public {
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.addMintManager(mintManager);
     }
 
@@ -66,10 +55,7 @@ contract RoleManagementTest is TokenTest {
     function test_RemoveMintManager_Success() public {
         // Arrange
         _addMintManager(mintManager);
-        assertTrue(
-            token.mintManager(mintManager),
-            "Mint manager should be set"
-        );
+        assertTrue(token.mintManager(mintManager), "Mint manager should be set");
 
         // Act
         vm.prank(owner);
@@ -78,10 +64,7 @@ contract RoleManagementTest is TokenTest {
         token.removeMintManager(mintManager);
 
         // Assert
-        assertFalse(
-            token.mintManager(mintManager),
-            "Mint manager should be removed"
-        );
+        assertFalse(token.mintManager(mintManager), "Mint manager should be removed");
     }
 
     /**
@@ -93,12 +76,7 @@ contract RoleManagementTest is TokenTest {
 
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.removeMintManager(mintManager);
     }
 
@@ -111,10 +89,7 @@ contract RoleManagementTest is TokenTest {
      */
     function test_AddBurnManager_Success() public {
         // Arrange
-        assertFalse(
-            token.burnManager(burnManager),
-            "Burn manager should not be set initially"
-        );
+        assertFalse(token.burnManager(burnManager), "Burn manager should not be set initially");
 
         // Act
         vm.prank(owner);
@@ -123,10 +98,7 @@ contract RoleManagementTest is TokenTest {
         token.addBurnManager(burnManager);
 
         // Assert
-        assertTrue(
-            token.burnManager(burnManager),
-            "Burn manager should be set"
-        );
+        assertTrue(token.burnManager(burnManager), "Burn manager should be set");
     }
 
     /**
@@ -145,12 +117,7 @@ contract RoleManagementTest is TokenTest {
     function test_AddBurnManager_RevertWhen_NotOwner() public {
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.addBurnManager(burnManager);
     }
 
@@ -160,10 +127,7 @@ contract RoleManagementTest is TokenTest {
     function test_RemoveBurnManager_Success() public {
         // Arrange
         _addBurnManager(burnManager);
-        assertTrue(
-            token.burnManager(burnManager),
-            "Burn manager should be set"
-        );
+        assertTrue(token.burnManager(burnManager), "Burn manager should be set");
 
         // Act
         vm.prank(owner);
@@ -172,10 +136,7 @@ contract RoleManagementTest is TokenTest {
         token.removeBurnManager(burnManager);
 
         // Assert
-        assertFalse(
-            token.burnManager(burnManager),
-            "Burn manager should be removed"
-        );
+        assertFalse(token.burnManager(burnManager), "Burn manager should be removed");
     }
 
     /**
@@ -187,12 +148,7 @@ contract RoleManagementTest is TokenTest {
 
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.removeBurnManager(burnManager);
     }
 
@@ -205,10 +161,7 @@ contract RoleManagementTest is TokenTest {
      */
     function test_AddBalanceManager_Success() public {
         // Arrange
-        assertFalse(
-            token.balanceManager(balanceManager),
-            "Balance manager should not be set initially"
-        );
+        assertFalse(token.balanceManager(balanceManager), "Balance manager should not be set initially");
 
         // Act
         vm.prank(owner);
@@ -217,10 +170,7 @@ contract RoleManagementTest is TokenTest {
         token.addBalanceManager(balanceManager);
 
         // Assert
-        assertTrue(
-            token.balanceManager(balanceManager),
-            "Balance manager should be set"
-        );
+        assertTrue(token.balanceManager(balanceManager), "Balance manager should be set");
     }
 
     /**
@@ -239,12 +189,7 @@ contract RoleManagementTest is TokenTest {
     function test_AddBalanceManager_RevertWhen_NotOwner() public {
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.addBalanceManager(balanceManager);
     }
 
@@ -254,10 +199,7 @@ contract RoleManagementTest is TokenTest {
     function test_RemoveBalanceManager_Success() public {
         // Arrange
         _addBalanceManager(balanceManager);
-        assertTrue(
-            token.balanceManager(balanceManager),
-            "Balance manager should be set"
-        );
+        assertTrue(token.balanceManager(balanceManager), "Balance manager should be set");
 
         // Act
         vm.prank(owner);
@@ -266,10 +208,7 @@ contract RoleManagementTest is TokenTest {
         token.removeBalanceManager(balanceManager);
 
         // Assert
-        assertFalse(
-            token.balanceManager(balanceManager),
-            "Balance manager should be removed"
-        );
+        assertFalse(token.balanceManager(balanceManager), "Balance manager should be removed");
     }
 
     /**
@@ -281,12 +220,7 @@ contract RoleManagementTest is TokenTest {
 
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.removeBalanceManager(balanceManager);
     }
 
@@ -299,10 +233,7 @@ contract RoleManagementTest is TokenTest {
      */
     function test_AddBlacklistManager_Success() public {
         // Arrange
-        assertFalse(
-            token.blacklistManager(blacklistManager),
-            "Blacklist manager should not be set initially"
-        );
+        assertFalse(token.blacklistManager(blacklistManager), "Blacklist manager should not be set initially");
 
         // Act
         vm.prank(owner);
@@ -311,10 +242,7 @@ contract RoleManagementTest is TokenTest {
         token.addBlacklistManager(blacklistManager);
 
         // Assert
-        assertTrue(
-            token.blacklistManager(blacklistManager),
-            "Blacklist manager should be set"
-        );
+        assertTrue(token.blacklistManager(blacklistManager), "Blacklist manager should be set");
     }
 
     /**
@@ -333,12 +261,7 @@ contract RoleManagementTest is TokenTest {
     function test_AddBlacklistManager_RevertWhen_NotOwner() public {
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.addBlacklistManager(blacklistManager);
     }
 
@@ -348,10 +271,7 @@ contract RoleManagementTest is TokenTest {
     function test_RemoveBlacklistManager_Success() public {
         // Arrange
         _addBlacklistManager(blacklistManager);
-        assertTrue(
-            token.blacklistManager(blacklistManager),
-            "Blacklist manager should be set"
-        );
+        assertTrue(token.blacklistManager(blacklistManager), "Blacklist manager should be set");
 
         // Act
         vm.prank(owner);
@@ -360,10 +280,7 @@ contract RoleManagementTest is TokenTest {
         token.removeBlacklistManager(blacklistManager);
 
         // Assert
-        assertFalse(
-            token.blacklistManager(blacklistManager),
-            "Blacklist manager should be removed"
-        );
+        assertFalse(token.blacklistManager(blacklistManager), "Blacklist manager should be removed");
     }
 
     /**
@@ -375,12 +292,7 @@ contract RoleManagementTest is TokenTest {
 
         // Act & Assert
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         token.removeBlacklistManager(blacklistManager);
     }
 }
